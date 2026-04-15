@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { BRAND } from "@/lib/seo";
 
+export const runtime = "nodejs";
 export const alt = `${BRAND.name} · Business Center Zaventem`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
