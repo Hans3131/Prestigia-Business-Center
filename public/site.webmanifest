@@ -1,0 +1,12 @@
+{
+  "name": "Prestigia — Business Center",
+  "short_name": "Prestigia",
+  "description": "Business center premium à Zaventem",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F0E4",
+  "theme_color": "#0B1A2E",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-navy: #0b1a2e;
+  --color-ivory: #f5f0e4;
+  --color-gold: #c9a84c;
+  --color-cream: #faf7f0;
+  --color-warmgray: #8a8578;
+
+  --color-background: #f5f0e4;
+  --color-foreground: #0b1a2e;
+
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  background: var(--color-ivory);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Body responsive sizing: 14 mobile · 15 tablet · 16 desktop */
+@media (min-width: 768px) {
+  html,
+  body {
+    font-size: 15px;
+  }
+}
+@media (min-width: 1024px) {
+  html,
+  body {
+    font-size: 16px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Typography defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+/* H2 responsive sizing: 28 mobile · 30 tablet · 32 desktop */
+h2 {
+  font-size: 28px;
+  line-height: 1.15;
+}
+@media (min-width: 768px) {
+  h2 {
+    font-size: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  h2 {
+    font-size: 32px;
+  }
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+/* Hide native cursor when custom cursor is active */
+.cursor-none-all,
+.cursor-none-all *,
+.cursor-none-all a,
+.cursor-none-all button {
+  cursor: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
