@@ -38,7 +38,13 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({} as { error?: string }));
+      if (res.status === 429) {
+        throw new Error(
+          data?.error ||
+            "Trop de tentatives. Réessayez dans quelques minutes."
+        );
+      }
       if (!res.ok || !data.ok) {
         throw new Error(data?.error || "Envoi impossible");
       }
