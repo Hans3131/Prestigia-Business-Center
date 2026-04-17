@@ -223,8 +223,15 @@ export function Footer() {
           </ul>
 
           <p className="font-sans">
-            <span className="text-ivory/30">Conçu avec</span>{" "}
-            <span className="text-gold/80">soin</span>
+            <span className="text-ivory/30">Conçu par</span>{" "}
+            <a
+              href="https://nhboost-agency.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold/80 transition-colors duration-500 hover:text-gold"
+            >
+              NHBoost Agency
+            </a>
           </p>
         </div>
       </div>
