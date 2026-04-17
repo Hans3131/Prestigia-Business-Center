@@ -21,8 +21,8 @@ const contacts = [
   {
     icon: Mail,
     label: "Email",
-    value: "contact@prestigia.be",
-    href: "mailto:contact@prestigia.be",
+    value: "info@prestigiabusinesscenter.com",
+    href: "mailto:info@prestigiabusinesscenter.com",
   },
   {
     icon: MapPin,

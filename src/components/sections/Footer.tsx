@@ -148,7 +148,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@prestigia.be"
+                  href="mailto:info@prestigiabusinesscenter.com"
                   className="group inline-flex items-center gap-3 transition-colors duration-500 hover:text-ivory"
                 >
                   <Mail
@@ -156,7 +156,7 @@ export function Footer() {
                     strokeWidth={1.5}
                     className="text-gold/80 transition-colors duration-500 group-hover:text-gold"
                   />
-                  contact@prestigia.be
+                  info@prestigiabusinesscenter.com
                 </a>
               </li>
             </ul>

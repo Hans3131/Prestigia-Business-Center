@@ -8,7 +8,7 @@ export const BRAND = {
   description:
     "Business center premium à Zaventem : domiciliation, gestion administrative, salles de réunions, espaces coworking et accompagnement marketing pour entrepreneurs et porteurs de projets.",
   phone: "+32-489-82-05-23",
-  email: "contact@prestigia.be",
+  email: "info@prestigiabusinesscenter.com",
   address: {
     street: "Lozenberg 21",
     postalCode: "1932",
