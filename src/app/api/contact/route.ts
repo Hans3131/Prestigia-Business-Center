@@ -63,8 +63,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, delivered: result.delivered });
   } catch (err) {
     console.error("[/api/contact]", err);
+    const debug = err instanceof Error ? err.message : String(err);
     return NextResponse.json(
-      { ok: false, error: "Erreur serveur, réessayez plus tard." },
+      { ok: false, error: "Erreur serveur, réessayez plus tard.", debug },
       { status: 500 }
     );
   }
