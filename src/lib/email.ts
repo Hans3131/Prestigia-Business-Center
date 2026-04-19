@@ -1,47 +1,72 @@
-import { Resend } from "resend";
-
-const apiKey = process.env.RESEND_API_KEY;
-const resend = apiKey ? new Resend(apiKey) : null;
-
-const FROM = process.env.CONTACT_FROM_EMAIL || "Prestigia <onboarding@resend.dev>";
-const TO = process.env.CONTACT_TO_EMAIL || "info@prestigiazaventem.com";
+const ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY;
+const FROM_NAME = process.env.CONTACT_FROM_NAME || "Prestigia Business Center";
 
 type SendArgs = {
+  /** Subject line of the email */
   subject: string;
-  html: string;
+  /** Plain text body */
   text: string;
+  /** HTML body (optional) */
+  html?: string;
+  /** Sender name displayed in the inbox */
+  fromName?: string;
+  /** Email address to set as Reply-To (usually the prospect's email) */
   replyTo?: string;
 };
 
 /**
- * Send an email via Resend. When RESEND_API_KEY is not configured (dev mode),
- * the payload is logged to the server console and treated as a success so the
- * UI flow can be tested end-to-end without credentials.
+ * Send a form submission via Web3Forms.
+ *
+ * Web3Forms doesn't require sender domain verification — it uses their own
+ * verified sending infrastructure, and the configured access key determines
+ * the destination. No API key is needed to verify with a domain.
+ *
+ * When WEB3FORMS_ACCESS_KEY is not configured (local dev), the payload is
+ * logged to the console and treated as a success.
  */
-export async function sendMail({ subject, html, text, replyTo }: SendArgs) {
-  if (!resend) {
+export async function sendMail({
+  subject,
+  text,
+  html,
+  fromName,
+  replyTo,
+}: SendArgs) {
+  if (!ACCESS_KEY) {
     console.log("───────── [DEV] email ─────────");
-    console.log("TO     :", TO);
-    console.log("FROM   :", FROM);
-    console.log("REPLY  :", replyTo ?? "(none)");
-    console.log("SUBJECT:", subject);
-    console.log("TEXT   :\n" + text);
+    console.log("REPLY-TO:", replyTo ?? "(none)");
+    console.log("SUBJECT :", subject);
+    console.log("TEXT    :\n" + text);
     console.log("───────────────────────────────");
     return { delivered: false, dev: true as const };
   }
 
-  const { error } = await resend.emails.send({
-    from: FROM,
-    to: TO,
-    replyTo,
+  const payload: Record<string, unknown> = {
+    access_key: ACCESS_KEY,
     subject,
-    html,
-    text,
+    message: text,
+    from_name: fromName || FROM_NAME,
+  };
+
+  if (html) payload.html = html;
+  if (replyTo) payload.replyto = replyTo;
+
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(payload),
   });
 
-  if (error) {
-    console.error("[resend] error:", error);
-    throw new Error(error.message || "Email delivery failed");
+  const data = (await res.json().catch(() => ({}))) as {
+    success?: boolean;
+    message?: string;
+  };
+
+  if (!res.ok || !data.success) {
+    console.error("[web3forms] failed:", res.status, data);
+    throw new Error(data.message || "Email delivery failed");
   }
 
   return { delivered: true as const };
