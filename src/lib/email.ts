@@ -4,7 +4,7 @@ const apiKey = process.env.RESEND_API_KEY;
 const resend = apiKey ? new Resend(apiKey) : null;
 
 const FROM = process.env.CONTACT_FROM_EMAIL || "Prestigia <onboarding@resend.dev>";
-const TO = process.env.CONTACT_TO_EMAIL || "info@prestigiabusinesscenter.com";
+const TO = process.env.CONTACT_TO_EMAIL || "info@prestigiazaventem.com";
 
 type SendArgs = {
   subject: string;
