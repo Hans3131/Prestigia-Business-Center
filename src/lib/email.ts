@@ -59,14 +59,19 @@ export async function sendMail({
     body: JSON.stringify(payload),
   });
 
-  const data = (await res.json().catch(() => ({}))) as {
-    success?: boolean;
-    message?: string;
-  };
+  const rawText = await res.text();
+  let data: { success?: boolean; message?: string } = {};
+  try {
+    data = JSON.parse(rawText);
+  } catch {
+    /* non-JSON response */
+  }
 
   if (!res.ok || !data.success) {
-    console.error("[web3forms] failed:", res.status, data);
-    throw new Error(data.message || "Email delivery failed");
+    console.error("[web3forms] failed:", res.status, rawText);
+    throw new Error(
+      `web3forms ${res.status}: ${data.message || rawText.slice(0, 200) || "no body"}`
+    );
   }
 
   return { delivered: true as const };
