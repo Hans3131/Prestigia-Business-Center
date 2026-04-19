@@ -10,6 +10,15 @@ import {
   Button,
   useToast,
 } from "@/components/ui";
+import { submitForm, buildMessageBody } from "@/lib/submit";
+
+const SUBJECT_LABELS: Record<string, string> = {
+  info: "Demande d'information",
+  quote: "Devis sur-mesure",
+  visit: "Réservation de visite",
+  partnership: "Partenariat",
+  other: "Autre",
+};
 
 export function ContactForm() {
   const toast = useToast();
@@ -21,33 +30,52 @@ export function ContactForm() {
 
     const form = e.currentTarget;
     const fd = new FormData(form);
-    const payload = {
-      name: fd.get("name"),
-      email: fd.get("email"),
-      phone: fd.get("phone") ?? "",
-      subject: fd.get("subject"),
-      message: fd.get("message"),
-      consent: fd.get("consent") === "on" ? "on" : "",
-      website: fd.get("website") ?? "",
-    };
+
+    const name = String(fd.get("name") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
+    const phone = String(fd.get("phone") ?? "").trim();
+    const subject = String(fd.get("subject") ?? "");
+    const message = String(fd.get("message") ?? "").trim();
+    const consent = fd.get("consent") === "on";
+    const botTrap = String(fd.get("website") ?? "");
+
+    if (!name || name.length < 2) {
+      toast.error("Nom requis");
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Email invalide");
+      return;
+    }
+    if (!subject) {
+      toast.error("Sélectionnez un sujet");
+      return;
+    }
+    if (!message || message.length < 10) {
+      toast.error("Message trop court");
+      return;
+    }
+    if (!consent) {
+      toast.error("Consentement requis");
+      return;
+    }
+
+    const subjectLabel = SUBJECT_LABELS[subject] ?? subject;
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      await submitForm({
+        subject: `[Prestigia] ${subjectLabel} — ${name}`,
+        message: buildMessageBody("Nouvelle demande de contact", [
+          ["Nom", name],
+          ["Email", email],
+          ["Téléphone", phone || "—"],
+          ["Sujet", subjectLabel],
+          ["Message", message],
+        ]),
+        replyTo: email,
+        botTrap,
       });
-      const data = await res.json().catch(() => ({} as { error?: string }));
-      if (res.status === 429) {
-        throw new Error(
-          data?.error ||
-            "Trop de tentatives. Réessayez dans quelques minutes."
-        );
-      }
-      if (!res.ok || !data.ok) {
-        throw new Error(data?.error || "Envoi impossible");
-      }
       toast.success(
         "Message envoyé",
         "Un conseiller vous répond sous 24h ouvrées."

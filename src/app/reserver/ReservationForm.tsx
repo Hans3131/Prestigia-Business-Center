@@ -10,6 +10,22 @@ import {
   Button,
   useToast,
 } from "@/components/ui";
+import { submitForm, buildMessageBody } from "@/lib/submit";
+
+const SERVICE_LABELS: Record<string, string> = {
+  domiciliation: "Domiciliation",
+  gestion: "Gestion administrative",
+  salles: "Salles de réunion",
+  coworking: "Coworking",
+  marketing: "Accompagnement marketing",
+  all: "Découverte générale",
+};
+
+const SLOT_LABELS: Record<string, string> = {
+  morning: "Matinée (08h – 12h)",
+  afternoon: "Après-midi (13h – 17h)",
+  evening: "Fin de journée (17h – 20h)",
+};
 
 export function ReservationForm() {
   const toast = useToast();
@@ -21,37 +37,60 @@ export function ReservationForm() {
 
     const form = e.currentTarget;
     const fd = new FormData(form);
-    const payload = {
-      firstname: fd.get("firstname"),
-      lastname: fd.get("lastname"),
-      email: fd.get("email"),
-      phone: fd.get("phone") ?? "",
-      company: fd.get("company") ?? "",
-      service: fd.get("service"),
-      date: fd.get("date"),
-      slot: fd.get("slot") ?? "",
-      message: fd.get("message") ?? "",
-      consent: fd.get("consent") === "on" ? "on" : "",
-      website: fd.get("website") ?? "",
-    };
+
+    const firstname = String(fd.get("firstname") ?? "").trim();
+    const lastname = String(fd.get("lastname") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
+    const phone = String(fd.get("phone") ?? "").trim();
+    const company = String(fd.get("company") ?? "").trim();
+    const service = String(fd.get("service") ?? "");
+    const date = String(fd.get("date") ?? "");
+    const slot = String(fd.get("slot") ?? "");
+    const message = String(fd.get("message") ?? "").trim();
+    const consent = fd.get("consent") === "on";
+    const botTrap = String(fd.get("website") ?? "");
+
+    if (!firstname || !lastname) {
+      toast.error("Nom et prénom requis");
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Email invalide");
+      return;
+    }
+    if (!service) {
+      toast.error("Sélectionnez un service");
+      return;
+    }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      toast.error("Date invalide");
+      return;
+    }
+    if (!consent) {
+      toast.error("Consentement requis");
+      return;
+    }
+
+    const serviceLabel = SERVICE_LABELS[service] ?? service;
+    const slotLabel = slot ? SLOT_LABELS[slot] ?? slot : "Peu importe";
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/reservation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      await submitForm({
+        subject: `[Prestigia] Réservation — ${firstname} ${lastname} (${serviceLabel})`,
+        message: buildMessageBody("Nouvelle demande de réservation", [
+          ["Nom complet", `${firstname} ${lastname}`],
+          ["Email", email],
+          ["Téléphone", phone || "—"],
+          ["Entreprise", company || "—"],
+          ["Service", serviceLabel],
+          ["Date souhaitée", date],
+          ["Créneau", slotLabel],
+          ["Message", message || "—"],
+        ]),
+        replyTo: email,
+        botTrap,
       });
-      const data = await res.json().catch(() => ({} as { error?: string }));
-      if (res.status === 429) {
-        throw new Error(
-          data?.error ||
-            "Trop de tentatives. Réessayez dans quelques minutes."
-        );
-      }
-      if (!res.ok || !data.ok) {
-        throw new Error(data?.error || "Envoi impossible");
-      }
       toast.success(
         "Demande envoyée",
         "Nous revenons vers vous sous 24h ouvrées."
