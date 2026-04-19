@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import {
   Field,
@@ -11,6 +11,13 @@ import {
   useToast,
 } from "@/components/ui";
 import { submitForm, buildMessageBody } from "@/lib/submit";
+
+const ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+  "4e2b08e0-10d3-466a-85cc-2625815934ee";
+
+const FROM_NAME =
+  process.env.NEXT_PUBLIC_CONTACT_FROM_NAME || "Prestigia Business Center";
 
 const SUBJECT_LABELS: Record<string, string> = {
   info: "Demande d'information",
@@ -23,6 +30,8 @@ const SUBJECT_LABELS: Record<string, string> = {
 export function ContactForm() {
   const toast = useToast();
   const [submitting, setSubmitting] = useState(false);
+  const subjectRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLInputElement>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,48 +43,39 @@ export function ContactForm() {
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
     const phone = String(fd.get("phone") ?? "").trim();
-    const subject = String(fd.get("subject") ?? "");
-    const message = String(fd.get("message") ?? "").trim();
+    const subjectKey = String(fd.get("subject_key") ?? "");
+    const body = String(fd.get("body") ?? "").trim();
     const consent = fd.get("consent") === "on";
     const botTrap = String(fd.get("website") ?? "");
 
-    if (!name || name.length < 2) {
-      toast.error("Nom requis");
-      return;
-    }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast.error("Email invalide");
-      return;
-    }
-    if (!subject) {
-      toast.error("Sélectionnez un sujet");
-      return;
-    }
-    if (!message || message.length < 10) {
-      toast.error("Message trop court");
-      return;
-    }
-    if (!consent) {
-      toast.error("Consentement requis");
-      return;
-    }
+    // Inline validation
+    if (!name || name.length < 2) return toast.error("Nom requis");
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      return toast.error("Email invalide");
+    if (!subjectKey) return toast.error("Sélectionnez un sujet");
+    if (!body || body.length < 10) return toast.error("Message trop court");
+    if (!consent) return toast.error("Consentement requis");
 
-    const subjectLabel = SUBJECT_LABELS[subject] ?? subject;
+    const subjectLabel = SUBJECT_LABELS[subjectKey] ?? subjectKey;
 
-    setSubmitting(true);
-    try {
-      await submitForm({
-        subject: `[Prestigia] ${subjectLabel} — ${name}`,
-        message: buildMessageBody("Nouvelle demande de contact", [
+    // Fill Web3Forms required hidden fields
+    if (subjectRef.current)
+      subjectRef.current.value = `[Prestigia] ${subjectLabel} — ${name}`;
+    if (messageRef.current)
+      messageRef.current.value = buildMessageBody(
+        "Nouvelle demande de contact",
+        [
           ["Nom", name],
           ["Email", email],
           ["Téléphone", phone || "—"],
           ["Sujet", subjectLabel],
-          ["Message", message],
-        ]),
-        replyTo: email,
-        botTrap,
-      });
+          ["Message", body],
+        ]
+      );
+
+    setSubmitting(true);
+    try {
+      await submitForm({ form, botTrap });
       toast.success(
         "Message envoyé",
         "Un conseiller vous répond sous 24h ouvrées."
@@ -93,6 +93,12 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="mt-10 space-y-6" noValidate>
+      {/* Web3Forms required hidden fields */}
+      <input type="hidden" name="access_key" value={ACCESS_KEY} />
+      <input type="hidden" name="from_name" value={FROM_NAME} />
+      <input type="hidden" name="subject" ref={subjectRef} />
+      <input type="hidden" name="message" ref={messageRef} />
+
       {/* Honeypot */}
       <input
         type="text"
@@ -114,7 +120,7 @@ export function ContactForm() {
           <Input name="phone" type="tel" autoComplete="tel" />
         </Field>
         <Field label="Sujet *">
-          <Select name="subject" defaultValue="" required>
+          <Select name="subject_key" defaultValue="" required>
             <option value="" disabled>
               Sélectionner
             </option>
@@ -128,7 +134,7 @@ export function ContactForm() {
       </div>
       <Field label="Message *">
         <Textarea
-          name="message"
+          name="body"
           rows={5}
           required
           placeholder="Votre demande en quelques lignes…"

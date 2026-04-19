@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import {
   Field,
@@ -11,6 +11,13 @@ import {
   useToast,
 } from "@/components/ui";
 import { submitForm, buildMessageBody } from "@/lib/submit";
+
+const ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+  "4e2b08e0-10d3-466a-85cc-2625815934ee";
+
+const FROM_NAME =
+  process.env.NEXT_PUBLIC_CONTACT_FROM_NAME || "Prestigia Business Center";
 
 const SERVICE_LABELS: Record<string, string> = {
   domiciliation: "Domiciliation",
@@ -30,6 +37,8 @@ const SLOT_LABELS: Record<string, string> = {
 export function ReservationForm() {
   const toast = useToast();
   const [submitting, setSubmitting] = useState(false);
+  const subjectRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLInputElement>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -43,42 +52,30 @@ export function ReservationForm() {
     const email = String(fd.get("email") ?? "").trim();
     const phone = String(fd.get("phone") ?? "").trim();
     const company = String(fd.get("company") ?? "").trim();
-    const service = String(fd.get("service") ?? "");
+    const serviceKey = String(fd.get("service_key") ?? "");
     const date = String(fd.get("date") ?? "");
-    const slot = String(fd.get("slot") ?? "");
-    const message = String(fd.get("message") ?? "").trim();
+    const slot = String(fd.get("slot_key") ?? "");
+    const body = String(fd.get("body") ?? "").trim();
     const consent = fd.get("consent") === "on";
     const botTrap = String(fd.get("website") ?? "");
 
-    if (!firstname || !lastname) {
-      toast.error("Nom et prénom requis");
-      return;
-    }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast.error("Email invalide");
-      return;
-    }
-    if (!service) {
-      toast.error("Sélectionnez un service");
-      return;
-    }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-      toast.error("Date invalide");
-      return;
-    }
-    if (!consent) {
-      toast.error("Consentement requis");
-      return;
-    }
+    if (!firstname || !lastname) return toast.error("Nom et prénom requis");
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      return toast.error("Email invalide");
+    if (!serviceKey) return toast.error("Sélectionnez un service");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date))
+      return toast.error("Date invalide");
+    if (!consent) return toast.error("Consentement requis");
 
-    const serviceLabel = SERVICE_LABELS[service] ?? service;
+    const serviceLabel = SERVICE_LABELS[serviceKey] ?? serviceKey;
     const slotLabel = slot ? SLOT_LABELS[slot] ?? slot : "Peu importe";
 
-    setSubmitting(true);
-    try {
-      await submitForm({
-        subject: `[Prestigia] Réservation — ${firstname} ${lastname} (${serviceLabel})`,
-        message: buildMessageBody("Nouvelle demande de réservation", [
+    if (subjectRef.current)
+      subjectRef.current.value = `[Prestigia] Réservation — ${firstname} ${lastname} (${serviceLabel})`;
+    if (messageRef.current)
+      messageRef.current.value = buildMessageBody(
+        "Nouvelle demande de réservation",
+        [
           ["Nom complet", `${firstname} ${lastname}`],
           ["Email", email],
           ["Téléphone", phone || "—"],
@@ -86,11 +83,13 @@ export function ReservationForm() {
           ["Service", serviceLabel],
           ["Date souhaitée", date],
           ["Créneau", slotLabel],
-          ["Message", message || "—"],
-        ]),
-        replyTo: email,
-        botTrap,
-      });
+          ["Message", body || "—"],
+        ]
+      );
+
+    setSubmitting(true);
+    try {
+      await submitForm({ form, botTrap });
       toast.success(
         "Demande envoyée",
         "Nous revenons vers vous sous 24h ouvrées."
@@ -119,6 +118,12 @@ export function ReservationForm() {
         Tous les champs marqués d'une étoile sont requis.
       </p>
 
+      {/* Web3Forms hidden fields */}
+      <input type="hidden" name="access_key" value={ACCESS_KEY} />
+      <input type="hidden" name="from_name" value={FROM_NAME} />
+      <input type="hidden" name="subject" ref={subjectRef} />
+      <input type="hidden" name="message" ref={messageRef} />
+
       {/* Honeypot */}
       <input
         type="text"
@@ -146,7 +151,7 @@ export function ReservationForm() {
           <Input name="company" autoComplete="organization" />
         </Field>
         <Field label="Service d'intérêt *">
-          <Select name="service" defaultValue="" required>
+          <Select name="service_key" defaultValue="" required>
             <option value="" disabled>
               Sélectionner
             </option>
@@ -162,7 +167,7 @@ export function ReservationForm() {
           <Input name="date" type="date" required />
         </Field>
         <Field label="Créneau">
-          <Select name="slot" defaultValue="">
+          <Select name="slot_key" defaultValue="">
             <option value="">Peu importe</option>
             <option value="morning">Matinée (08h – 12h)</option>
             <option value="afternoon">Après-midi (13h – 17h)</option>
@@ -171,7 +176,7 @@ export function ReservationForm() {
         </Field>
         <Field label="Message" className="md:col-span-2">
           <Textarea
-            name="message"
+            name="body"
             rows={4}
             placeholder="Quelques mots sur votre projet (facultatif)"
           />
