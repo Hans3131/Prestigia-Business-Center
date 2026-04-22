@@ -314,12 +314,12 @@ export function Header() {
                   +32 489 82 05 23
                 </a>
                 <a
-                  href="mailto:info@prestigiabusinesscenter.com"
+                  href="mailto:info@prestigiazaventem.com"
                   className="flex items-center gap-3 transition-colors hover:text-ivory"
                   onClick={() => setOpen(false)}
                 >
                   <Mail size={13} strokeWidth={1.5} className="text-gold" />
-                  info@prestigiabusinesscenter.com
+                  info@prestigiazaventem.com
                 </a>
                 <div className="flex items-center gap-3">
                   <MapPin size={13} strokeWidth={1.5} className="text-gold" />

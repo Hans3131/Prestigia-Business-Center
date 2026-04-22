@@ -123,8 +123,8 @@ export default function EspaceClientPage() {
               <Mail size={16} className="mt-0.5 shrink-0 text-gold" strokeWidth={1.5} />
               <p className="text-sm text-navy/80">
                 Pour toute assistance, écrivez à{" "}
-                <a href="mailto:info@prestigiabusinesscenter.com" className="text-gold hover:underline">
-                  info@prestigiabusinesscenter.com
+                <a href="mailto:info@prestigiazaventem.com" className="text-gold hover:underline">
+                  info@prestigiazaventem.com
                 </a>
                 .
               </p>
