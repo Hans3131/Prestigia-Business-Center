@@ -89,7 +89,7 @@ const services: ServiceBlock[] = [
       "Postes flexibles ou dédiés",
       "Fibre très haut débit sécurisée",
       "Espaces détente et cuisine",
-      "Accès 24/7 sécurisé par badge",
+      "Accès sécurisé par badge",
     ],
     image:
       "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?q=80&w=1600&auto=format&fit=crop",

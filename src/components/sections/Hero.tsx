@@ -136,9 +136,10 @@ export function Hero() {
             variants={lineReveal}
             className="mx-auto mt-10 max-w-xl text-[17px] leading-[1.7] text-ivory/85 md:text-lg"
           >
-            Un écrin d'exception pour les entrepreneurs visionnaires.
-            Domiciliation prestigieuse, bureaux premium et services sur-mesure
-            au cœur de Bruxelles.
+            Domiciliation d'entreprise, bureaux professionnels et services
+            sur-mesure pour entrepreneurs exigeants. Profitez d'un personnel
+            qualifié, d'une grande réactivité et d'un accompagnement de qualité
+            pour développer votre activité en toute confiance.
           </motion.p>
 
           {/* CTAs */}

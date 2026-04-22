@@ -33,7 +33,7 @@ const contacts = [
   {
     icon: Clock,
     label: "Horaires",
-    value: "Lun – Ven · 08h – 20h",
+    value: "Lun – Ven · 09h – 17h",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
                 <p className="mt-5 font-sans text-[10px] uppercase tracking-[0.3em] text-warmgray">
                   {label}
                 </p>
-                <p className="mt-2 font-serif text-lg font-semibold text-navy">
+                <p className="mt-2 font-serif text-base font-semibold leading-snug text-navy break-words md:text-lg">
                   {value}
                 </p>
               </>

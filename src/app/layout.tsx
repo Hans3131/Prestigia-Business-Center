@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/sections";
-import { CustomCursor } from "@/components/animations";
 import { ToastProvider } from "@/components/ui";
 import { LocalBusinessJsonLd } from "@/components/JsonLd";
 import { BRAND, SITE_URL } from "@/lib/seo";
@@ -113,7 +112,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-ivory text-navy">
         <LocalBusinessJsonLd />
         <ToastProvider>
-          <CustomCursor />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

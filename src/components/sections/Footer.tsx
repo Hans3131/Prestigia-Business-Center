@@ -179,10 +179,7 @@ export function Footer() {
             <p className="mt-6 text-[15px] text-ivory/75">
               Lundi – Vendredi
               <br />
-              <span className="text-ivory">08h00 – 20h00</span>
-            </p>
-            <p className="mt-2 text-[13px] text-ivory/55">
-              Accès 24/7 pour les résidents
+              <span className="text-ivory">09h00 – 17h00</span>
             </p>
 
             <div className="mt-8 flex items-center gap-3">

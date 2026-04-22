@@ -77,7 +77,7 @@ export function WhyUs() {
             {[
               { value: "15+", label: "Années d'expertise" },
               { value: "500+", label: "Clients accompagnés" },
-              { value: "24/7", label: "Accès sécurisé" },
+              { value: "100%", label: "Confidentialité" },
             ].map((s) => (
               <div key={s.label}>
                 <div className="font-serif text-2xl font-semibold leading-none text-navy md:text-3xl">

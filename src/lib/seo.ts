@@ -17,6 +17,6 @@ export const BRAND = {
     country: "BE",
   },
   geo: { latitude: 50.885, longitude: 4.475 },
-  openingHours: "Mo-Fr 08:00-20:00",
+  openingHours: "Mo-Fr 09:00-17:00",
   founded: "2010",
 } as const;

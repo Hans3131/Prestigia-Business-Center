@@ -33,7 +33,7 @@ const equipments = [
   { icon: Wifi, label: "Fibre très haut débit" },
   { icon: Coffee, label: "Café & collation premium" },
   { icon: Car, label: "Parking privé sécurisé" },
-  { icon: Shield, label: "Accès 24/7 par badge" },
+  { icon: Shield, label: "Accès sécurisé par badge" },
   { icon: Printer, label: "Espace impression pro" },
   { icon: Leaf, label: "Terrasses végétalisées" },
 ];
@@ -69,8 +69,7 @@ export default function CentresPage() {
               <li className="flex items-start gap-4">
                 <Clock size={18} strokeWidth={1.5} className="mt-0.5 shrink-0 text-gold" />
                 <div>
-                  <p className="font-medium text-navy">Lun – Ven · 08h00 – 20h00</p>
-                  <p className="text-navy/75">Accès 24/7 pour les résidents</p>
+                  <p className="font-medium text-navy">Lun – Ven · 09h00 – 17h00</p>
                 </div>
               </li>
             </ul>

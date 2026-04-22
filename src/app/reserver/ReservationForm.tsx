@@ -31,9 +31,8 @@ const SERVICE_LABELS: Record<string, string> = {
 };
 
 const SLOT_LABELS: Record<string, string> = {
-  morning: "Matinée (08h – 12h)",
+  morning: "Matinée (09h – 12h)",
   afternoon: "Après-midi (13h – 17h)",
-  evening: "Fin de journée (17h – 20h)",
 };
 
 export function ReservationForm() {
@@ -177,9 +176,8 @@ export function ReservationForm() {
         <Field label="Créneau">
           <Select name="slot_key" defaultValue="">
             <option value="">Peu importe</option>
-            <option value="morning">Matinée (08h – 12h)</option>
+            <option value="morning">Matinée (09h – 12h)</option>
             <option value="afternoon">Après-midi (13h – 17h)</option>
-            <option value="evening">Fin de journée (17h – 20h)</option>
           </Select>
         </Field>
         <Field label="Message" className="md:col-span-2">

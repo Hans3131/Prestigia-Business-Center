@@ -38,8 +38,8 @@ export function LocalBusinessJsonLd() {
           "Thursday",
           "Friday",
         ],
-        opens: "08:00",
-        closes: "20:00",
+        opens: "09:00",
+        closes: "17:00",
       },
     ],
     hasOfferCatalog: {
