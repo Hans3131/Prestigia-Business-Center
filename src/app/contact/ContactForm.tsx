@@ -9,6 +9,8 @@ import {
   Textarea,
   Button,
   useToast,
+  ReCaptcha,
+  type ReCaptchaHandle,
 } from "@/components/ui";
 import { submitForm, buildMessageBody } from "@/lib/submit";
 
@@ -32,6 +34,7 @@ export function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const subjectRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLInputElement>(null);
+  const captchaRef = useRef<ReCaptchaHandle>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -55,6 +58,10 @@ export function ContactForm() {
     if (!subjectKey) return toast.error("Sélectionnez un sujet");
     if (!body || body.length < 10) return toast.error("Message trop court");
     if (!consent) return toast.error("Consentement requis");
+
+    const captchaToken = captchaRef.current?.getToken() || "";
+    if (!captchaToken)
+      return toast.error("Veuillez valider le reCAPTCHA");
 
     const subjectLabel = SUBJECT_LABELS[subjectKey] ?? subjectKey;
 
@@ -81,6 +88,7 @@ export function ContactForm() {
         "Un conseiller vous répond sous 24h ouvrées."
       );
       form.reset();
+      captchaRef.current?.reset();
     } catch (err) {
       toast.error(
         "Envoi impossible",
@@ -141,7 +149,7 @@ export function ContactForm() {
         />
       </Field>
 
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-col gap-5">
         <label className="flex items-start gap-3 text-sm text-navy/75">
           <input
             type="checkbox"
@@ -151,28 +159,33 @@ export function ContactForm() {
           />
           <span>J'accepte la politique de confidentialité.</span>
         </label>
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          disabled={submitting}
-        >
-          {submitting ? (
-            <>
-              <Loader2
-                size={16}
-                strokeWidth={1.5}
-                className="animate-spin"
-              />
-              Envoi…
-            </>
-          ) : (
-            <>
-              Envoyer
-              <ArrowRight size={16} strokeWidth={1.5} />
-            </>
-          )}
-        </Button>
+
+        <ReCaptcha ref={captchaRef} />
+
+        <div className="flex justify-end pt-2">
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            disabled={submitting}
+          >
+            {submitting ? (
+              <>
+                <Loader2
+                  size={16}
+                  strokeWidth={1.5}
+                  className="animate-spin"
+                />
+                Envoi…
+              </>
+            ) : (
+              <>
+                Envoyer
+                <ArrowRight size={16} strokeWidth={1.5} />
+              </>
+            )}
+          </Button>
+        </div>
       </div>
     </form>
   );

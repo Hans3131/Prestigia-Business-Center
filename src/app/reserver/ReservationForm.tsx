@@ -9,6 +9,8 @@ import {
   Textarea,
   Button,
   useToast,
+  ReCaptcha,
+  type ReCaptchaHandle,
 } from "@/components/ui";
 import { submitForm, buildMessageBody } from "@/lib/submit";
 
@@ -39,6 +41,7 @@ export function ReservationForm() {
   const [submitting, setSubmitting] = useState(false);
   const subjectRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLInputElement>(null);
+  const captchaRef = useRef<ReCaptchaHandle>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -66,6 +69,10 @@ export function ReservationForm() {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date))
       return toast.error("Date invalide");
     if (!consent) return toast.error("Consentement requis");
+
+    const captchaToken = captchaRef.current?.getToken() || "";
+    if (!captchaToken)
+      return toast.error("Veuillez valider le reCAPTCHA");
 
     const serviceLabel = SERVICE_LABELS[serviceKey] ?? serviceKey;
     const slotLabel = slot ? SLOT_LABELS[slot] ?? slot : "Peu importe";
@@ -95,6 +102,7 @@ export function ReservationForm() {
         "Nous revenons vers vous sous 24h ouvrées."
       );
       form.reset();
+      captchaRef.current?.reset();
     } catch (err) {
       toast.error(
         "Envoi impossible",
@@ -183,7 +191,7 @@ export function ReservationForm() {
         </Field>
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+      <div className="mt-8 flex flex-col gap-5">
         <label className="flex items-start gap-3 text-sm text-navy/75">
           <input
             type="checkbox"
@@ -193,28 +201,33 @@ export function ReservationForm() {
           />
           <span>J'accepte d'être recontacté par Prestigia.</span>
         </label>
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          disabled={submitting}
-        >
-          {submitting ? (
-            <>
-              <Loader2
-                size={16}
-                strokeWidth={1.5}
-                className="animate-spin"
-              />
-              Envoi…
-            </>
-          ) : (
-            <>
-              Envoyer ma demande
-              <ArrowRight size={16} strokeWidth={1.5} />
-            </>
-          )}
-        </Button>
+
+        <ReCaptcha ref={captchaRef} />
+
+        <div className="flex justify-end pt-2">
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            disabled={submitting}
+          >
+            {submitting ? (
+              <>
+                <Loader2
+                  size={16}
+                  strokeWidth={1.5}
+                  className="animate-spin"
+                />
+                Envoi…
+              </>
+            ) : (
+              <>
+                Envoyer ma demande
+                <ArrowRight size={16} strokeWidth={1.5} />
+              </>
+            )}
+          </Button>
+        </div>
       </div>
     </form>
   );
