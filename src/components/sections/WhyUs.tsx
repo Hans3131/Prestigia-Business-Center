@@ -72,12 +72,13 @@ export function WhyUs() {
             className="mt-8 h-px w-24 bg-gradient-to-r from-gold via-gold/40 to-transparent"
           />
 
-          {/* Small stats trio */}
-          <div className="mt-8 flex flex-wrap items-start gap-x-10 gap-y-6">
+          {/* Stats grid */}
+          <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-6">
             {[
               { value: "15+", label: "Années d'expertise" },
-              { value: "500+", label: "Clients accompagnés" },
+              { value: "+2500", label: "Clients accompagnés" },
               { value: "100%", label: "Confidentialité" },
+              { value: "9h – 17h", label: "Accès sécurisé" },
             ].map((s) => (
               <div key={s.label}>
                 <div className="font-serif text-2xl font-semibold leading-none text-navy md:text-3xl">
