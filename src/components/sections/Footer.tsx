@@ -8,6 +8,7 @@ import { easePremium, viewportOnce } from "@/lib/animations";
 const primary = [
   { href: "/services", label: "Services" },
   { href: "/centres", label: "Centres" },
+  { href: "/franchise", label: "Franchise" },
   { href: "/reserver", label: "Réserver" },
   { href: "/contact", label: "Contact" },
 ];
