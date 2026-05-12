@@ -21,8 +21,8 @@ const contacts = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@prestigiazaventem.com",
-    href: "mailto:info@prestigiazaventem.com",
+    value: "info@prestigiabusinesscenter.com",
+    href: "mailto:info@prestigiabusinesscenter.com",
   },
   {
     icon: MapPin,

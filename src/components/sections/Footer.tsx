@@ -8,7 +8,6 @@ import { easePremium, viewportOnce } from "@/lib/animations";
 const primary = [
   { href: "/services", label: "Services" },
   { href: "/centres", label: "Centres" },
-  { href: "/franchise", label: "Franchise" },
   { href: "/reserver", label: "Réserver" },
   { href: "/contact", label: "Contact" },
 ];
@@ -149,7 +148,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:info@prestigiazaventem.com"
+                  href="mailto:info@prestigiabusinesscenter.com"
                   className="group inline-flex items-center gap-3 transition-colors duration-500 hover:text-ivory"
                 >
                   <Mail
@@ -157,7 +156,7 @@ export function Footer() {
                     strokeWidth={1.5}
                     className="text-gold/80 transition-colors duration-500 group-hover:text-gold"
                   />
-                  info@prestigiazaventem.com
+                  info@prestigiabusinesscenter.com
                 </a>
               </li>
             </ul>
@@ -220,17 +219,6 @@ export function Footer() {
             ))}
           </ul>
 
-          <p className="font-sans">
-            <span className="text-ivory/30">Conçu par</span>{" "}
-            <a
-              href="https://nhboost-agency.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gold/80 transition-colors duration-500 hover:text-gold"
-            >
-              NHBoost Agency
-            </a>
-          </p>
         </div>
       </div>
 

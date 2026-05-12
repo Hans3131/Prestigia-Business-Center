@@ -11,7 +11,6 @@ const nav = [
   { href: "/", label: "Accueil" },
   { href: "/services", label: "Services" },
   { href: "/centres", label: "Centres" },
-  { href: "/franchise", label: "Franchise" },
   { href: "/reserver", label: "Réserver" },
   { href: "/contact", label: "Contact" },
 ];
@@ -315,12 +314,12 @@ export function Header() {
                   +32 489 82 05 23
                 </a>
                 <a
-                  href="mailto:info@prestigiazaventem.com"
+                  href="mailto:info@prestigiabusinesscenter.com"
                   className="flex items-center gap-3 transition-colors hover:text-ivory"
                   onClick={() => setOpen(false)}
                 >
                   <Mail size={13} strokeWidth={1.5} className="text-gold" />
-                  info@prestigiazaventem.com
+                  info@prestigiabusinesscenter.com
                 </a>
                 <div className="flex items-center gap-3">
                   <MapPin size={13} strokeWidth={1.5} className="text-gold" />
