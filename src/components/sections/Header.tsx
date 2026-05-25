@@ -146,7 +146,12 @@ export function Header() {
 
           {/* ---------- CTA ---------- */}
           <div className="hidden shrink-0 items-center lg:flex">
-            <LuxuryCTA href="/reserver">Prendre rendez-vous</LuxuryCTA>
+            <LuxuryCTA
+              href="https://app.prestigiabusinesscenter.com/"
+              external
+            >
+              Accéder à mon espace client
+            </LuxuryCTA>
           </div>
 
           {/* Mobile burger */}
@@ -328,11 +333,12 @@ export function Header() {
               </div>
 
               <LuxuryCTA
-                href="/reserver"
+                href="https://app.prestigiabusinesscenter.com/"
                 onClick={() => setOpen(false)}
                 fullWidth
+                external
               >
-                Prendre rendez-vous
+                Accéder à mon espace client
               </LuxuryCTA>
             </motion.div>
           </motion.div>
@@ -349,16 +355,19 @@ function LuxuryCTA({
   children,
   onClick,
   fullWidth = false,
+  external = false,
 }: {
   href: string;
   children: React.ReactNode;
   onClick?: () => void;
   fullWidth?: boolean;
+  external?: boolean;
 }) {
   return (
     <Link
       href={href}
       onClick={onClick}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={cn(
         "group relative inline-flex items-center justify-center gap-2.5 overflow-hidden border border-gold/70 px-7 py-3 font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-gold transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-navy",
         fullWidth && "w-full px-8 py-4 text-xs"
