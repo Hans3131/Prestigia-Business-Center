@@ -67,11 +67,9 @@ export const metadata: Metadata = {
     images: ["/og.jpg"],
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
   manifest: "/site.webmanifest",
   robots: {
