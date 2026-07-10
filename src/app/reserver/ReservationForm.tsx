@@ -77,19 +77,19 @@ export function ReservationForm() {
     const slotLabel = slot ? SLOT_LABELS[slot] ?? slot : "Peu importe";
 
     if (subjectRef.current)
-      subjectRef.current.value = `[Prestigia] Réservation — ${firstname} ${lastname} (${serviceLabel})`;
+      subjectRef.current.value = `[Prestigia] Réservation ${firstname} ${lastname} (${serviceLabel})`;
     if (messageRef.current)
       messageRef.current.value = buildMessageBody(
         "Nouvelle demande de réservation",
         [
           ["Nom complet", `${firstname} ${lastname}`],
           ["Email", email],
-          ["Téléphone", phone || "—"],
-          ["Entreprise", company || "—"],
+          ["Téléphone", phone || ""],
+          ["Entreprise", company || ""],
           ["Service", serviceLabel],
           ["Date souhaitée", date],
           ["Créneau", slotLabel],
-          ["Message", body || "—"],
+          ["Message", body || ""],
         ]
       );
 

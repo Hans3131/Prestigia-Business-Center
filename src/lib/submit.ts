@@ -1,7 +1,7 @@
 /**
  * Client-side submission to Web3Forms using FormData (not JSON).
  * Web3Forms detects JSON payloads as server-side and rejects them on the free
- * tier — multipart/form-data from a <form> element is the officially supported
+ * tier multipart/form-data from a <form> element is the officially supported
  * "client-side" method.
  */
 
@@ -9,12 +9,12 @@ type SubmitArgs = {
   /** Form element whose fields will be submitted. Must contain the
    * `access_key` hidden input. */
   form: HTMLFormElement;
-  /** Honeypot value — if truthy, bail silently */
+  /** Honeypot value if truthy, bail silently */
   botTrap?: string;
 };
 
 export async function submitForm({ form, botTrap }: SubmitArgs) {
-  // Silent honeypot — pretend success
+  // Silent honeypot pretend success
   if (botTrap && botTrap.length > 0) {
     return { delivered: false as const, honeypot: true as const };
   }
@@ -47,6 +47,6 @@ export function buildMessageBody(title: string, rows: [string, string][]) {
     title +
     "\n\n" +
     rows.map(([k, v]) => `${k}: ${v}`).join("\n") +
-    "\n\n—\nNotification automatique Prestigia"
+    "\n\n\nNotification automatique Prestigia"
   );
 }

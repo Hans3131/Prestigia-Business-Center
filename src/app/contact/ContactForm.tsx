@@ -67,14 +67,14 @@ export function ContactForm() {
 
     // Fill Web3Forms required hidden fields
     if (subjectRef.current)
-      subjectRef.current.value = `[Prestigia] ${subjectLabel} — ${name}`;
+      subjectRef.current.value = `[Prestigia] ${subjectLabel} ${name}`;
     if (messageRef.current)
       messageRef.current.value = buildMessageBody(
         "Nouvelle demande de contact",
         [
           ["Nom", name],
           ["Email", email],
-          ["Téléphone", phone || "—"],
+          ["Téléphone", phone || ""],
           ["Sujet", subjectLabel],
           ["Message", body],
         ]

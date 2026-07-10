@@ -32,7 +32,7 @@ const WHATSAPP_LINK = `https://wa.me/32496057286?text=${encodeURIComponent(
 )}`;
 
 export const metadata: Metadata = {
-  title: "Siège Social en Flandre — 499€/an | Prestigia Zaventem",
+  title: "Siège Social en Flandre 499€/an | Prestigia Zaventem",
   description:
     "Domiciliez votre siège social en Flandre à seulement 499 € par an. Adresse professionnelle à Zaventem, courrier géré, espace coworking à disposition. Le centre de référence pour les entrepreneurs exigeants.",
   keywords: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_BE",
     siteName: BRAND.name,
-    title: "Siège Social en Flandre — 499€/an | Prestigia",
+    title: "Siège Social en Flandre 499€/an | Prestigia",
     description:
       "Une adresse de prestige pour votre siège social en Flandre. Courrier géré, coworking inclus. À partir de 499 € par an.",
     url: PAGE_URL,
@@ -59,13 +59,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Siège social en Flandre à 499€/an — Prestigia Zaventem",
+        alt: "Siège social en Flandre à 499€/an Prestigia Zaventem",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Siège Social en Flandre — 499€/an",
+    title: "Siège Social en Flandre 499€/an",
     description:
       "Domiciliez votre société en Flandre chez Prestigia à Zaventem. À partir de 499 € par an.",
   },
@@ -78,7 +78,7 @@ const included = [
   {
     icon: MapPin,
     title: "Adresse prestigieuse",
-    text: "Une adresse commerciale reconnue par la BCE — Lozenberg 21, 1932 Zaventem.",
+    text: "Une adresse commerciale reconnue par la BCE Lozenberg 21, 1932 Zaventem.",
   },
   {
     icon: Mail,
@@ -103,7 +103,7 @@ const included = [
   {
     icon: Sparkles,
     title: "Sans engagement long",
-    text: "Formule annuelle, résiliable simplement — pas de frais cachés, pas de piège.",
+    text: "Formule annuelle, résiliable simplement pas de frais cachés, pas de piège.",
   },
 ];
 
@@ -116,7 +116,7 @@ const steps = [
   {
     n: "02",
     title: "Signature en ligne",
-    text: "Vous signez électroniquement — nous constituons votre dossier en interne.",
+    text: "Vous signez électroniquement nous constituons votre dossier en interne.",
   },
   {
     n: "03",
@@ -370,7 +370,7 @@ export default function SiegeSocialFlandrePage() {
             <div className="relative">
               <div
                 role="img"
-                aria-label="Bureaux Prestigia — cadre professionnel à Zaventem, Flandre"
+                aria-label="Bureaux Prestigia cadre professionnel à Zaventem, Flandre"
                 className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-cover bg-center transition-transform duration-[1600ms] hover:scale-[1.02]"
                 style={{
                   backgroundImage:
@@ -411,7 +411,7 @@ export default function SiegeSocialFlandrePage() {
             </p>
             <p className="mt-6 leading-[1.9] text-navy/80 md:text-[17px]">
               Notre centre de Zaventem est stratégiquement positionné entre
-              Bruxelles et l'aéroport international — la meilleure vitrine pour
+              Bruxelles et l'aéroport international la meilleure vitrine pour
               votre société.
             </p>
           </SlideUp>
@@ -463,7 +463,7 @@ export default function SiegeSocialFlandrePage() {
       {/* ============ PRICING BLOCK ============ */}
       <Section className="bg-ivory !py-[50px]">
         <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 lg:grid-cols-[3fr_2fr] lg:gap-16">
-          {/* Left — image */}
+          {/* Left image */}
           <SlideUp>
             <div className="relative overflow-hidden rounded-sm">
               <div
@@ -480,7 +480,7 @@ export default function SiegeSocialFlandrePage() {
             </div>
           </SlideUp>
 
-          {/* Right — offer card */}
+          {/* Right offer card */}
           <SlideUp delay={0.1}>
             <div className="relative overflow-hidden rounded-sm border border-gold/40 bg-navy p-10 text-ivory">
               <span
@@ -676,7 +676,7 @@ export default function SiegeSocialFlandrePage() {
             </h2>
             <p className="mx-auto mt-8 max-w-xl leading-[1.85] text-navy/75">
               Un appel, une signature, une adresse active en 48h. Contactez-nous
-              par téléphone, WhatsApp ou email — nous répondons vite.
+              par téléphone, WhatsApp ou email nous répondons vite.
             </p>
 
             <div className="mt-10">
@@ -705,7 +705,7 @@ export default function SiegeSocialFlandrePage() {
         <WhatsAppIcon size={26} />
       </a>
 
-      {/* Breadcrumbs — visible in top of hero not shown, but embedded via schema */}
+      {/* Breadcrumbs visible in top of hero not shown, but embedded via schema */}
       <nav aria-label="Fil d'Ariane" className="sr-only">
         <ol>
           <li>

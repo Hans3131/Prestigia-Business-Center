@@ -204,7 +204,7 @@ export function Footer() {
 
         {/* ---- Bottom strip ---- */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-ivory/8 py-8 text-center text-[11px] uppercase tracking-[0.22em] text-ivory/40 md:flex-row md:text-left">
-          <p>© {new Date().getFullYear()} Prestigia — Zaventem</p>
+          <p>© {new Date().getFullYear()} Prestigia Zaventem</p>
 
           <ul className="flex items-center gap-6">
             {legal.map((l) => (

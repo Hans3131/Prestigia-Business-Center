@@ -167,7 +167,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
     >
       <Link
         href={service.href}
-        aria-label={`${service.title} — en savoir plus`}
+        aria-label={`${service.title} en savoir plus`}
         className={cn(
           "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-sm p-8 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:p-10",
           palette.bg,

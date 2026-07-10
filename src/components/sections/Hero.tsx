@@ -109,7 +109,7 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline — one line up to 1300px */}
+          {/* Headline one line up to 1300px */}
           <h1 className="font-serif font-semibold leading-[1.1] tracking-normal text-ivory text-[clamp(2.25rem,5.2vw,5rem)] md:whitespace-nowrap md:leading-[1.05]">
             <span className="inline-block overflow-hidden align-bottom">
               <motion.span variants={wordReveal} className="inline-block">

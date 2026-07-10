@@ -66,7 +66,7 @@ export default function ReserverPage() {
       {/* Main booking grid */}
       <Section className="bg-ivory !py-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-          {/* Left — benefits */}
+          {/* Left benefits */}
           <SlideUp>
             <SectionLabel>Votre visite</SectionLabel>
             <h2 className="mt-6 font-serif font-semibold leading-[1.15] tracking-normal text-navy">
@@ -98,7 +98,7 @@ export default function ReserverPage() {
             </div>
           </SlideUp>
 
-          {/* Right — form */}
+          {/* Right form */}
           <SlideUp delay={0.1}>
             <ReservationForm />
           </SlideUp>

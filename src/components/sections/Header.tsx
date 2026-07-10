@@ -68,7 +68,7 @@ export function Header() {
               "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.8 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
           }}
         />
-        {/* Bottom hairline — subtle, stronger when scrolled */}
+        {/* Bottom hairline subtle, stronger when scrolled */}
         <motion.div
           aria-hidden
           animate={{ opacity: scrolled ? 1 : 0.3 }}
@@ -301,7 +301,7 @@ export function Header() {
               })}
             </motion.nav>
 
-            {/* Bottom — contact + CTA */}
+            {/* Bottom contact + CTA */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -378,7 +378,7 @@ function LuxuryCTA({
         aria-hidden
         className="absolute inset-0 -z-10 origin-left scale-x-0 bg-gold transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
       />
-      {/* Inner corner ticks — ornamental */}
+      {/* Inner corner ticks ornamental */}
       <span
         aria-hidden
         className="pointer-events-none absolute left-1.5 top-1.5 h-1.5 w-1.5 border-l border-t border-gold/60 transition-colors duration-500 group-hover:border-navy/50"

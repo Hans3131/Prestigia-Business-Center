@@ -23,7 +23,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${BRAND.name} — ${BRAND.tagline}`,
+    default: `${BRAND.name} ${BRAND.tagline}`,
     template: `%s | ${BRAND.name}`,
   },
   description: BRAND.description,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_BE",
     siteName: BRAND.name,
-    title: `${BRAND.name} — ${BRAND.tagline}`,
+    title: `${BRAND.name} ${BRAND.tagline}`,
     description: BRAND.description,
     url: SITE_URL,
     images: [
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BRAND.name} — ${BRAND.tagline}`,
+    title: `${BRAND.name} ${BRAND.tagline}`,
     description: BRAND.description,
     images: ["/og.jpg"],
   },

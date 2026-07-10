@@ -41,7 +41,7 @@ const services: ServiceBlock[] = [
       "Adresse prestigieuse à Zaventem",
       "Réception et tri du courrier",
       "Numérisation et envoi des documents",
-      "Contrat flexible — mensuel ou annuel",
+      "Contrat flexible mensuel ou annuel",
     ],
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop",

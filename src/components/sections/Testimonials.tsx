@@ -17,7 +17,7 @@ type Testimonial = {
 
 const featured: Testimonial = {
   quote:
-    "Un cadre remarquable et un service d'une rigueur exemplaire. Prestigia incarne le sérieux que nous exigeons de nos partenaires — et la discrétion dont nos clients ont besoin.",
+    "Un cadre remarquable et un service d'une rigueur exemplaire. Prestigia incarne le sérieux que nous exigeons de nos partenaires et la discrétion dont nos clients ont besoin.",
   author: "Marc Antoine Lefèvre",
   role: "Fondateur",
   company: "Cabinet de conseil M.A.L",

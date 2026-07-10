@@ -67,7 +67,7 @@ const franchises: Franchise[] = [
         "Taux d'occupation salles 65% en moyenne",
       ],
       vision:
-        "Construire un actif réel, transmissible, qui génère des revenus récurrents et un patrimoine immobilier — pas un simple métier.",
+        "Construire un actif réel, transmissible, qui génère des revenus récurrents et un patrimoine immobilier pas un simple métier.",
       image:
         "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
     },
@@ -78,7 +78,7 @@ const franchises: Franchise[] = [
     price: "25 000 €",
     tagline: "Croissance",
     description:
-      "Une agence marketing premium sous licence Prestigia. Stratégie, branding, performance — vous facturez sans construire from scratch.",
+      "Une agence marketing premium sous licence Prestigia. Stratégie, branding, performance vous facturez sans construire from scratch.",
     icon: Megaphone,
     highlight: "Profitabilité dès le 1er trimestre",
     detail: {
@@ -124,7 +124,7 @@ const franchises: Franchise[] = [
         "Un modèle de revenus récurrents par excellence : chaque client devient un abonnement mensuel. Vous proposez aux entreprises domiciliées chez Prestigia (et au-delà) un service complet de gestion administrative et comptable.",
       accompagnement: [
         "Formation complète aux outils comptables (Odoo, QuickBooks)",
-        "Pas de diplôme comptable requis — vous coordonnez et gérez",
+        "Pas de diplôme comptable requis vous coordonnez et gérez",
         "Réseau d'experts-comptables agréés en partenariat",
         "Onboarding client documenté de A à Z",
         "Hotline juridique et fiscale 24/7 incluse 18 mois",

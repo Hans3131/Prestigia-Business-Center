@@ -14,7 +14,7 @@ type Props = {
 };
 
 /**
- * Wrapper magnétique — attire subtilement son contenu vers le curseur
+ * Wrapper magnétique attire subtilement son contenu vers le curseur
  * quand la souris approche. Désactivé sur touch et reduced-motion.
  */
 export function MagneticButton({

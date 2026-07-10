@@ -30,7 +30,7 @@ export default function EspaceClientPage() {
 
       <Section className="bg-ivory !pt-[30px] !pb-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Left — features preview */}
+          {/* Left features preview */}
           <SlideUp>
             <SectionLabel>Fonctionnalités</SectionLabel>
             <h2 className="mt-6 font-serif font-semibold leading-[1.15] tracking-normal text-navy">
@@ -60,7 +60,7 @@ export default function EspaceClientPage() {
             </div>
           </SlideUp>
 
-          {/* Right — login card */}
+          {/* Right login card */}
           <SlideUp delay={0.1}>
             <div className="relative overflow-hidden rounded-sm border border-navy/10 bg-navy p-8 text-ivory md:p-10">
               <div

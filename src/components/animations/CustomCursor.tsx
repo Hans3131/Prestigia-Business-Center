@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring } from "motion/react";
 import { usePrefersReducedMotion } from "@/lib/hooks/useReducedMotion";
 
 /**
- * Curseur personnalisé premium — desktop uniquement.
+ * Curseur personnalisé premium desktop uniquement.
  * Suit la souris avec un spring, s'agrandit sur les éléments interactifs.
  */
 export function CustomCursor() {
@@ -74,7 +74,7 @@ export function CustomCursor() {
 
   return (
     <>
-      {/* Outer ring — follows cursor with spring */}
+      {/* Outer ring follows cursor with spring */}
       <motion.div
         style={{
           translateX: sx,
@@ -93,7 +93,7 @@ export function CustomCursor() {
         className="pointer-events-none fixed left-0 top-0 z-[100] -translate-x-1/2 -translate-y-1/2 rounded-full border backdrop-blur-[1px] mix-blend-difference"
       />
 
-      {/* Inner dot — hugs cursor precisely */}
+      {/* Inner dot hugs cursor precisely */}
       <motion.div
         style={{ translateX: x, translateY: y }}
         animate={{ opacity: hidden ? 0 : hovered ? 0 : 1 }}
