@@ -28,13 +28,13 @@ import { SITE_URL, BRAND } from "@/lib/seo";
 const PAGE_URL = `${SITE_URL}/siege-social-flandre`;
 const WHATSAPP_NUMBER = "+32 496 05 72 86";
 const WHATSAPP_LINK = `https://wa.me/32496057286?text=${encodeURIComponent(
-  "Bonjour, je suis intéressé par la domiciliation en Flandre à 499€/an."
+  "Bonjour, je suis intéressé par la domiciliation en Flandre à 490€/an."
 )}`;
 
 export const metadata: Metadata = {
-  title: "Siège Social en Flandre 499€/an | Prestigia Zaventem",
+  title: "Siège Social en Flandre 490€/an | Prestigia Zaventem",
   description:
-    "Domiciliez votre siège social en Flandre à seulement 499 € par an. Adresse professionnelle à Zaventem, courrier géré, espace coworking à disposition. Le centre de référence pour les entrepreneurs exigeants.",
+    "Domiciliez votre siège social en Flandre à seulement 490 € par an. Adresse professionnelle à Zaventem, courrier géré, espace coworking à disposition. Le centre de référence pour les entrepreneurs exigeants.",
   keywords: [
     "siège social Flandre",
     "domiciliation Zaventem",
@@ -50,24 +50,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_BE",
     siteName: BRAND.name,
-    title: "Siège Social en Flandre 499€/an | Prestigia",
+    title: "Siège Social en Flandre 490€/an | Prestigia",
     description:
-      "Une adresse de prestige pour votre siège social en Flandre. Courrier géré, coworking inclus. À partir de 499 € par an.",
+      "Une adresse de prestige pour votre siège social en Flandre. Courrier géré, coworking inclus. À partir de 490 € par an.",
     url: PAGE_URL,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Siège social en Flandre à 499€/an Prestigia Zaventem",
+        alt: "Siège social en Flandre à 490€/an Prestigia Zaventem",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Siège Social en Flandre 499€/an",
+    title: "Siège Social en Flandre 490€/an",
     description:
-      "Domiciliez votre société en Flandre chez Prestigia à Zaventem. À partir de 499 € par an.",
+      "Domiciliez votre société en Flandre chez Prestigia à Zaventem. À partir de 490 € par an.",
   },
   robots: { index: true, follow: true },
 };
@@ -131,7 +131,7 @@ const faq = [
     a: "Oui. Prestigia délivre une attestation de domiciliation officielle conforme à la législation belge. L'adresse Lozenberg 21, 1932 Zaventem est enregistrée comme siège social par des centaines d'entreprises actives.",
   },
   {
-    q: "Que comprend exactement l'offre à 499 € par an ?",
+    q: "Que comprend exactement l'offre à 490 € par an ?",
     a: "Adresse commerciale reconnue, réception et gestion complète du courrier (tri, numérisation, notification), accès à l'espace coworking pendant les heures d'ouverture, ainsi que la mise à disposition d'une salle de réunion ponctuelle. Aucun frais caché.",
   },
   {
@@ -169,7 +169,7 @@ function StructuredData() {
       "Siège social professionnel à Zaventem avec gestion du courrier et accès à un espace coworking.",
     offers: {
       "@type": "Offer",
-      price: "499",
+      price: "490",
       priceCurrency: "EUR",
       priceValidUntil: "2027-12-31",
       availability: "https://schema.org/InStock",
@@ -320,31 +320,44 @@ export default function SiegeSocialFlandrePage() {
             Siège social en Flandre
             <br />
             <span className="italic text-gold">
-              à seulement 499&nbsp;€&nbsp;par&nbsp;an.
+              à seulement 490&nbsp;€&nbsp;par&nbsp;an.
             </span>
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-ivory/85 md:text-lg">
-            Une adresse commerciale reconnue à <strong className="font-medium">Zaventem</strong>,
-            un <strong className="font-medium">courrier professionnel géré</strong>, un{" "}
-            <strong className="font-medium">espace coworking</strong> à votre disposition.
-            <br className="hidden md:block" /> Le meilleur centre pour installer le siège
-            social de votre société en Flandre.
+          <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-ivory/85 md:text-lg">
+            Le meilleur centre pour installer le siège social de votre société en Flandre.
           </p>
+
+          {/* Bullet list — clear value props */}
+          <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-3 text-left text-[14px] text-ivory/90 md:grid-cols-2 md:text-[15px]">
+            {[
+              "Adresse commerciale reconnue à Zaventem",
+              "Courrier professionnel géré au quotidien",
+              "Espace coworking à disposition",
+              "Attestation officielle BCE en 48 h",
+            ].map((line) => (
+              <li key={line} className="flex items-start gap-3">
+                <CheckCircle2 size={17} strokeWidth={1.5} className="mt-0.5 shrink-0 text-gold" />
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
 
           <div className="mt-10">
             <CTAs centered />
           </div>
 
-          {/* Trust strip */}
-          <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[13px] text-ivory/70">
-            <span className="inline-flex items-center gap-2">
-              <BadgeCheck size={16} className="text-gold" strokeWidth={1.5} />
-              Attestation officielle BCE
+          {/* Trust strip — with SPF Finance certification */}
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[13px] text-ivory/75">
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/[0.06] px-3.5 py-1.5">
+              <ShieldCheck size={15} className="text-gold" strokeWidth={1.5} />
+              <span className="font-medium tracking-wide text-ivory">
+                Centre agréé par le SPF Finance
+              </span>
             </span>
             <span className="inline-flex items-center gap-2">
               <BadgeCheck size={16} className="text-gold" strokeWidth={1.5} />
-              Activation en 48h
+              Attestation officielle BCE
             </span>
             <span className="inline-flex items-center gap-2">
               <BadgeCheck size={16} className="text-gold" strokeWidth={1.5} />
@@ -402,18 +415,46 @@ export default function SiegeSocialFlandrePage() {
               aria-hidden
               className="mt-6 block h-px w-16 bg-gradient-to-r from-gold via-gold/60 to-transparent"
             />
-            <p className="mt-8 leading-[1.9] text-navy/80 md:text-[17px]">
-              Depuis 15 ans, Prestigia accueille des entrepreneurs, dirigeants et
-              porteurs de projets qui ont besoin d'une{" "}
-              <strong>adresse professionnelle fiable</strong> en Flandre. Nous
-              offrons un cadre premium, une équipe disponible et un service pensé
-              pour les exigences du monde des affaires belge.
+            <p className="mt-8 leading-[1.85] text-navy/80 md:text-[17px]">
+              Depuis 15 ans, Prestigia accueille les entrepreneurs qui exigent une
+              <strong className="font-semibold"> adresse professionnelle fiable </strong>
+              en Flandre.
             </p>
-            <p className="mt-6 leading-[1.9] text-navy/80 md:text-[17px]">
-              Notre centre de Zaventem est stratégiquement positionné entre
-              Bruxelles et l'aéroport international la meilleure vitrine pour
-              votre société.
-            </p>
+
+            <ul className="mt-8 space-y-4">
+              {[
+                {
+                  title: "Centre agréé par le SPF Finance",
+                  text: "Attestation officielle reconnue par l'administration belge, conforme à la législation en vigueur.",
+                },
+                {
+                  title: "Position stratégique",
+                  text: "Entre Bruxelles et l'aéroport international — la meilleure vitrine pour votre société.",
+                },
+                {
+                  title: "Cadre premium",
+                  text: "Une équipe disponible, un service pensé pour les exigences du monde des affaires belge.",
+                },
+                {
+                  title: "Plus de 2 500 clients accompagnés",
+                  text: "Note moyenne de 4.9/5 — un modèle de confiance éprouvé sur 15 années.",
+                },
+              ].map((item) => (
+                <li key={item.title} className="flex items-start gap-4">
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+                    <CheckCircle2 size={13} strokeWidth={2} />
+                  </span>
+                  <div>
+                    <p className="font-semibold text-navy md:text-[16px]">
+                      {item.title}
+                    </p>
+                    <p className="mt-1 leading-[1.7] text-navy/70 md:text-[15px]">
+                      {item.text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </SlideUp>
         </div>
       </Section>
@@ -423,7 +464,7 @@ export default function SiegeSocialFlandrePage() {
         <div className="mb-12 flex flex-col items-center text-center">
           <SectionLabel align="center">Ce que vous obtenez</SectionLabel>
           <h2 className="mt-6 max-w-3xl font-serif font-semibold leading-[1.2] tracking-normal text-navy">
-            <SplitReveal pre="Un pack complet à" accent="499&nbsp;€ par an." />
+            <SplitReveal pre="Un pack complet à" accent="490&nbsp;€ par an." />
           </h2>
           <p className="mt-6 max-w-xl leading-[1.7] text-navy/70">
             Tout ce qu'il faut pour installer et gérer votre siège social en
@@ -498,7 +539,7 @@ export default function SiegeSocialFlandrePage() {
 
               <div className="relative mt-6 flex items-baseline gap-3">
                 <span className="font-serif text-6xl font-semibold leading-none text-ivory md:text-7xl">
-                  499
+                  490
                 </span>
                 <span className="font-serif text-3xl font-semibold text-gold">
                   €
@@ -513,7 +554,8 @@ export default function SiegeSocialFlandrePage() {
 
               <ul className="relative mt-8 space-y-3 border-t border-ivory/10 pt-6 text-[14px] text-ivory/85">
                 {[
-                  "Adresse BCE reconnue",
+                  "Centre agréé par le SPF Finance",
+                  "Adresse BCE reconnue à Zaventem",
                   "Courrier reçu, trié, scanné",
                   "Coworking pendant les heures d'ouverture",
                   "Sans engagement long",

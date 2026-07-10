@@ -42,11 +42,12 @@ body {
   }
 }
 
-/* Typography defaults */
+/* Typography defaults — Fraunces optical sizing for premium impact */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 600;
-  letter-spacing: 0.005em;
+  letter-spacing: -0.015em;
+  font-optical-sizing: auto;
 }
 
 /* H2 responsive sizing: 28 mobile · 30 tablet · 32 desktop */
