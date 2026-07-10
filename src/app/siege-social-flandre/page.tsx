@@ -304,7 +304,7 @@ export default function SiegeSocialFlandrePage() {
         <span aria-hidden className="pointer-events-none absolute left-6 top-32 hidden h-10 w-10 border-l border-t border-gold/50 md:block md:left-12" />
         <span aria-hidden className="pointer-events-none absolute right-6 bottom-12 hidden h-10 w-10 border-r border-b border-gold/50 md:block md:right-12" />
 
-        <SlideUp className="relative mx-auto w-[92%] max-w-[1200px] md:w-full md:px-[50px]">
+        <SlideUp className="relative mx-auto flex w-[92%] max-w-[1200px] flex-col items-center text-center md:w-full md:px-[50px]">
           {/* Eyebrow */}
           <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-ivory/15 bg-ivory/5 px-5 py-2 backdrop-blur-xl">
             <span className="relative flex h-2 w-2">
@@ -324,7 +324,7 @@ export default function SiegeSocialFlandrePage() {
             </span>
           </h1>
 
-          <p className="mt-8 max-w-2xl text-[15px] leading-[1.8] text-ivory/85 md:text-lg">
+          <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-ivory/85 md:text-lg">
             Une adresse commerciale reconnue à <strong className="font-medium">Zaventem</strong>,
             un <strong className="font-medium">courrier professionnel géré</strong>, un{" "}
             <strong className="font-medium">espace coworking</strong> à votre disposition.
@@ -333,11 +333,11 @@ export default function SiegeSocialFlandrePage() {
           </p>
 
           <div className="mt-10">
-            <CTAs />
+            <CTAs centered />
           </div>
 
           {/* Trust strip */}
-          <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 text-[13px] text-ivory/70">
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[13px] text-ivory/70">
             <span className="inline-flex items-center gap-2">
               <BadgeCheck size={16} className="text-gold" strokeWidth={1.5} />
               Attestation officielle BCE
@@ -364,21 +364,57 @@ export default function SiegeSocialFlandrePage() {
 
       {/* ============ INTRO ============ */}
       <Section className="bg-ivory !py-[50px]">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionLabel align="center">Pourquoi Prestigia</SectionLabel>
-          <h2 className="mt-6 font-serif font-semibold leading-[1.2] tracking-normal text-navy">
-            <SplitReveal
-              pre="Le centre de référence"
-              accent="en Flandre."
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
+          {/* Image */}
+          <SlideUp>
+            <div className="relative">
+              <div
+                role="img"
+                aria-label="Bureaux Prestigia — cadre professionnel à Zaventem, Flandre"
+                className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-cover bg-center transition-transform duration-[1600ms] hover:scale-[1.02]"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?q=80&w=1600&auto=format&fit=crop')",
+                }}
+              />
+              {/* Gold frame corners */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 border-r border-t border-gold md:-right-6 md:-top-6 md:h-28 md:w-28"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-4 -left-4 h-20 w-20 border-b border-l border-gold md:-bottom-6 md:-left-6 md:h-28 md:w-28"
+              />
+            </div>
+          </SlideUp>
+
+          {/* Text */}
+          <SlideUp delay={0.1}>
+            <SectionLabel>Pourquoi Prestigia</SectionLabel>
+            <h2 className="mt-6 font-serif font-semibold leading-[1.2] tracking-normal text-navy">
+              <SplitReveal
+                pre="Le centre de référence"
+                accent="en Flandre."
+              />
+            </h2>
+            <span
+              aria-hidden
+              className="mt-6 block h-px w-16 bg-gradient-to-r from-gold via-gold/60 to-transparent"
             />
-          </h2>
-          <p className="mt-8 leading-[1.9] text-navy/80 md:text-[17px]">
-            Depuis 15 ans, Prestigia accueille des entrepreneurs, dirigeants et
-            porteurs de projets qui ont besoin d'une <strong>adresse professionnelle
-            fiable</strong> en Flandre. Nous offrons un cadre premium, une équipe
-            disponible et un service pensé pour les exigences du monde des
-            affaires belge.
-          </p>
+            <p className="mt-8 leading-[1.9] text-navy/80 md:text-[17px]">
+              Depuis 15 ans, Prestigia accueille des entrepreneurs, dirigeants et
+              porteurs de projets qui ont besoin d'une{" "}
+              <strong>adresse professionnelle fiable</strong> en Flandre. Nous
+              offrons un cadre premium, une équipe disponible et un service pensé
+              pour les exigences du monde des affaires belge.
+            </p>
+            <p className="mt-6 leading-[1.9] text-navy/80 md:text-[17px]">
+              Notre centre de Zaventem est stratégiquement positionné entre
+              Bruxelles et l'aéroport international — la meilleure vitrine pour
+              votre société.
+            </p>
+          </SlideUp>
         </div>
       </Section>
 
