@@ -4,6 +4,7 @@ import { SITE_URL } from "@/lib/seo";
 const routes = [
   { path: "/", priority: 1.0, changeFrequency: "monthly" as const },
   { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
+  { path: "/siege-social-flandre", priority: 1.0, changeFrequency: "weekly" as const },
   { path: "/centres", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/reserver", priority: 0.9, changeFrequency: "weekly" as const },
   { path: "/contact", priority: 0.8, changeFrequency: "yearly" as const },
