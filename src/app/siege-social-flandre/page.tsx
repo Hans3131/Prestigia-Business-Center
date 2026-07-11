@@ -249,7 +249,7 @@ function CTAs({ centered = false }: { centered?: boolean }) {
       className={`flex flex-wrap items-center gap-4 ${centered ? "justify-center" : ""}`}
     >
       <MagneticButton strength={0.18}>
-        <Button href="/contact" variant="primary" size="lg">
+        <Button href="tel:+32496057286" variant="primary" size="lg">
           Nous contacter
           <ArrowRight size={16} strokeWidth={1.5} />
         </Button>
