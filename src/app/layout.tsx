@@ -110,8 +110,8 @@ export default function RootLayout({
       lang="fr"
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-ivory text-navy">
-        {/* Google Ads (gtag.js) */}
+      <head>
+        {/* Google Ads (gtag.js) — installed in <head> per Google's recommendation */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
           strategy="afterInteractive"
@@ -124,7 +124,8 @@ export default function RootLayout({
             gtag('config', '${GOOGLE_ADS_ID}');
           `}
         </Script>
-
+      </head>
+      <body className="min-h-full flex flex-col bg-ivory text-navy">
         <LocalBusinessJsonLd />
         <ToastProvider>
           <Header />
