@@ -135,7 +135,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+32489820523"
+                  href="tel:+32496057286"
                   className="group inline-flex items-center gap-3 transition-colors duration-500 hover:text-ivory"
                 >
                   <Phone
@@ -143,7 +143,7 @@ export function Footer() {
                     strokeWidth={1.5}
                     className="text-gold/80 transition-colors duration-500 group-hover:text-gold"
                   />
-                  +32 489 82 05 23
+                  +32 496 05 72 86
                 </a>
               </li>
               <li>

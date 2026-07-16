@@ -7,7 +7,7 @@ export const BRAND = {
   tagline: "L'Excellence au Service de votre Entreprise",
   description:
     "Business center premium à Zaventem : domiciliation, gestion administrative, salles de réunions, espaces coworking et accompagnement marketing pour entrepreneurs et porteurs de projets.",
-  phone: "+32-489-82-05-23",
+  phone: "+32-496-05-72-86",
   email: "info@prestigiabusinesscenter.com",
   address: {
     street: "Lozenberg 21",

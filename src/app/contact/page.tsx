@@ -15,8 +15,8 @@ const contacts = [
   {
     icon: Phone,
     label: "Téléphone",
-    value: "+32 489 82 05 23",
-    href: "tel:+32489820523",
+    value: "+32 496 05 72 86",
+    href: "tel:+32496057286",
   },
   {
     icon: Mail,

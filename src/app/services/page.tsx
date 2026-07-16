@@ -216,7 +216,7 @@ export default function ServicesPage() {
               <ArrowRight size={16} strokeWidth={1.5} />
             </Button>
             <Link
-              href="tel:+32489820523"
+              href="tel:+32496057286"
               className="font-sans text-sm uppercase tracking-[0.22em] text-ivory/85 hover:text-ivory"
             >
               Nous contacter

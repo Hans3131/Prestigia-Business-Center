@@ -311,12 +311,12 @@ export function Header() {
               {/* Contact lines */}
               <div className="space-y-2.5 text-[13px] text-ivory/75">
                 <a
-                  href="tel:+32489820523"
+                  href="tel:+32496057286"
                   className="flex items-center gap-3 transition-colors hover:text-ivory"
                   onClick={() => setOpen(false)}
                 >
                   <Phone size={13} strokeWidth={1.5} className="text-gold" />
-                  +32 489 82 05 23
+                  +32 496 05 72 86
                 </a>
                 <a
                   href="mailto:info@prestigiabusinesscenter.com"
